@@ -1,0 +1,2 @@
+AddHandler fcgid-script .php 
+FCGIWrapper "/dh/cgi-system/php82.cgi" .php

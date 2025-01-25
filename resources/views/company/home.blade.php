@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('styles.css') }}">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- <script src="js/bootstrap.min.js"></script> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ asset('styles_journey.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
+     <script src="{{ asset('bootstrap.bundle.min.js') }}"></script> 
+    <link rel="stylesheet" href="{{asset('bootstrap-icons.css')}}">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -17,24 +17,24 @@
 </head>
 <style>
     ::-webkit-scrollbar {
-	width: 10px;
+  width: 10px;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
 
-	border-radius: 5px;
+  border-radius: 5px;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-	background: #aaa;
-	border-radius: 5px;
+  background: #aaa;
+  border-radius: 5px;
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-	background: #888;
+  background: #888;
   }
 
 
@@ -47,12 +47,12 @@ html,body,.container-fluid{
   <div class="container-fluid  p-0 d-flex justify-content-center vh-100 align-items-center" dir="rtl">
     <div class="d-block mx-auto" style="max-width: 500px;">
         <h2 class="cong">احصل على رمز الـWiFi المجاني لمدة 24 ساعة. </h2>
-        <form action="{{ route('costumer-data') }}" method="POST">
+        <form action="{{ route('costumer-data') }}" id="my-form" method="POST">
             <input type="text" hidden name="companyName" value="{{ request()->route('resturant') }}" >
 
 
           <label for="name" class="pri">الاسم الكامل</label>
-          <input type="text" class="form-control d-block mx-auto mb-2 custom-input" name="CostumerName"  pattern="[\u0600-\u06FFA-Za-z]{3,}" required>
+          <input type="text" class="form-control d-block mx-auto mb-2 custom-input" name="CostumerName"  pattern="[\u0600-\u06FFA-Za-z\s]{3,}" required>
           <label for="phoneNumber" class="pri">رقم الهاتف</label>
           <input type="phone" class="form-control d-block mx-auto mb-2 custom-input" name="CostumerNumber" id="phone" required dir="ltr">
           <div id="phone-error" class="text-danger"></div>
@@ -60,16 +60,17 @@ html,body,.container-fluid{
             <a type="button" class="sec"       data-bs-toggle="popover" data-bs-placement="right"
             data-bs-custom-class="custom-popover"
             data-bs-title="الاحكام والشروط"
-            data-bs-content="سوف يتم استخدام معلوماتك الشخصية من اجل تحسين تجربتك واجراء مقترحات افضل">
+            data-bs-content="قد يتم استخدام هذه المعلومات لأغراض الدعاية و الأعلان و تزويدكم بعروضنا القادمة و الحصرية">
               الاحكام والشروط
             </a>
         </div>
-          <button value="submit" class="btn mb-2 w-100 text-white custom-btn"> احصل على الرمز</button>
+          <button value="submit" id="submit-btn" class="btn mb-2 w-100 text-white custom-btn"> احصل على الرمز</button>
         </form>
         
     </div>
   </div>
   <script>
+
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl)

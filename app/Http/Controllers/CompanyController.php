@@ -121,24 +121,25 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+     public function store(Request $request)
     {
 
 
 
         if($request->hasFile('DocumentFile'))
         {
-            $LogoPath=$request->file('DocumentFile')->store('Logos','public');
-
-            $Ad1Path=$request->file('DocumentAd1')->store('Adverts','public');
-            $Ad2Path=$request->file('DocumentAd2')->store('Adverts','public');
-            $Ad3Path=$request->file('DocumentAd3')->store('Adverts','public');
-
             $validatedData = $request->validate([
                 'CompanyName' => 'required|string',
                 'UrlName' => 'required|string|unique:companies',
 
             ]);
+            $LogoPath=$request->file('DocumentFile')->storeAs('Logos',$validatedData['UrlName'].'-logo','public');
+
+            $Ad1Path=$request->file('DocumentAd1')->storeAs('Adverts',$validatedData['UrlName'].'-ad_1','public');
+            $Ad2Path=$request->file('DocumentAd2')->storeAs('Adverts',$validatedData['UrlName'].'-ad_2','public');
+            $Ad3Path=$request->file('DocumentAd3')->storeAs('Adverts',$validatedData['UrlName'].'-ad_3','public');
+
+
 
             $data=[$LogoPath,$Ad1Path,$Ad2Path,$Ad3Path,$validatedData];
 
@@ -197,7 +198,7 @@ class CompanyController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, string $id)
+       public function update(Request $request, string $id)
 
     {
     $brand = company::find($id);
@@ -223,10 +224,13 @@ class CompanyController extends Controller
     // Handle ad_1
 
     if ($request->hasFile('DocumentAd1')) {
-        Storage::delete($brand->ad_1);
+        $old_path_ad1=pathinfo($brand->ad_1    , PATHINFO_FILENAME);
+        $extension_ad1 = $request->file('DocumentAd1')->getClientOriginalExtension();
+
+
 
             Storage::delete($brand->ad_1);
-            $ad1Path = $request->file('DocumentAd1')->store('Adverts','public');
+            $ad1Path = $request->file('DocumentAd1')->storeAs('Adverts', $old_path_ad1 ,'public');
             $brand->ad_1 = $ad1Path;
 
     } else {
@@ -236,11 +240,15 @@ class CompanyController extends Controller
     // Handle ad_2
 
     if ($request->hasFile('DocumentAd2')) {
-        Storage::delete($brand->ad_2);
+        $old_path_ad2=pathinfo($brand->ad_2    , PATHINFO_FILENAME);
+        $extension_ad2 = $request->file('DocumentAd2')->getClientOriginalExtension();
+
+
 
             Storage::delete($brand->ad_2);
-            $ad2Path = $request->file('DocumentAd2')->store('Adverts','public');
+            $ad2Path = $request->file('DocumentAd2')->storeAs('Adverts', $old_path_ad2 ,'public');
             $brand->ad_2 = $ad2Path;
+
 
     } else {
         $brand->ad_2=$validatedData['ad2'];
@@ -249,11 +257,14 @@ class CompanyController extends Controller
     // Handle ad_3
 
     if ($request->hasFile('DocumentAd3')) {
-        Storage::delete($brand->ad_3);
+        $old_path_ad3=pathinfo($brand->ad_3    , PATHINFO_FILENAME);
+        $extension_ad3 = $request->file('DocumentAd3')->getClientOriginalExtension();
+
+
 
             Storage::delete($brand->ad_3);
-            $ad1Path = $request->file('DocumentAd3')->store('Adverts','public');
-            $brand->ad_3 = $ad1Path;
+            $ad3Path = $request->file('DocumentAd3')->storeAs('Adverts', $old_path_ad3 ,'public');
+            $brand->ad_3 = $ad3Path;
 
     } else {
         $brand->ad_3=$validatedData['ad3'];
@@ -262,10 +273,13 @@ class CompanyController extends Controller
     // Handle logo
 
     if ($request->hasFile('DocumentLogo')) {
-        Storage::delete($brand->logo);
+        $old_path_logo=pathinfo($brand->logo    , PATHINFO_FILENAME);
+        $extension_logo = $request->file('DocumentLogo')->getClientOriginalExtension();
+
+
 
             Storage::delete($brand->logo);
-            $logoPath = $request->file('DocumentLogo')->store('Logos','public');
+            $logoPath = $request->file('DocumentLogo')->storeAs('Logos',$old_path_logo,'public');
             $brand->logo = $logoPath;
 
     } else {
@@ -275,7 +289,7 @@ class CompanyController extends Controller
 
     $brand->save();
 
-    return response()->json(['message' => 'Brand updated successfully', 'brand' => $brand], 200);
+    return redirect()->route('Companies')->with('success', 'Brand updated successfully');
 }
 
 

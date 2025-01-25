@@ -19,6 +19,18 @@ class ClientController extends Controller
 
         return view('company.home',['company'=>$company]);
     }
+   public function index_new($type,$resturant)
+    {
+        $company=DB::table('companies')->select('*')->where('UrlName','=',$resturant)->where('type','=',$type)->get()->first();
+
+        return view('company.form',['company'=>$company]);
+    }
+   public function index_new_dark($type,$resturant)
+    {
+        $company=DB::table('companies')->select('*')->where('UrlName','=',$resturant)->where('type','=',$type)->get()->first();
+
+        return view('company.form_dark',['company'=>$company]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +44,16 @@ class ClientController extends Controller
         $code = DB::table('hotspot-codes')->inRandomOrder()->value('code');
         return view('company.code',['code'=>$code]);
     }
-
+    public function show_code_id(string $CompanyId){
+        
+        $code = DB::table('hotspot-codes')->where('company_id',$CompanyId)->inRandomOrder()->value('code');
+        return view('company.code_id',['code'=>$code]);
+    }
+    public function show_code_id_dark(string $CompanyId){
+        
+        $code = DB::table('hotspot-codes')->where('company_id',$CompanyId)->inRandomOrder()->value('code');
+        return view('company.code_id_dark',['code'=>$code]);
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -52,6 +73,25 @@ class ClientController extends Controller
         $data->save();
 
         return redirect()->route('ShowCode');
+    }
+    public function store_new(Request $request)
+    {
+        $Company=company::where('UrlName',$request->companyName )->first();
+        $data=new data([
+            'data_1'=>$request->CostumerName,
+            'data_2'=>$request->CostumerNumber,
+            'company_id'=>$Company->id,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+
+
+        ]);
+        $data->save();
+        if ($request->dark == 1) {
+        return redirect()->route('ShowCodeIdDark', ['CompanyId' => $Company->id]);
+        } else {
+        return redirect()->route('ShowCodeId', ['CompanyId' => $Company->id]);
+        }
     }
 
     /**

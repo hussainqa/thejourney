@@ -1,0 +1,244 @@
+
+body {
+    background-color: #f1f1f1;
+    padding-top: 62.5px;
+}
+
+ 
+ @media (min-width:980px){
+
+    #left{
+        padding-right:280px;
+    }
+
+ }
+
+ @media (max-width:980px){
+    
+    .sidebar{
+      display: none !important;
+    }
+
+    .container-fluid{
+      padding:0 !important;
+    }
+
+    .tog{
+      display: none;
+   }
+
+ }
+.sidebar{
+    position:fixed;
+    display: block;
+    right: 0;
+    top:62.5px !important;
+    direction: rtl;
+    height: 100% !important;
+    border-left: 1px solid #ddd;
+    width: 280px;
+}
+
+.sidebar-item{
+    display: block;
+    padding: 16px ;
+    border-bottom: solid 1px #ddd;
+    width: 100% !important;
+    color: #222;
+    text-decoration: none;
+}
+
+.sidebar-item:hover{
+    background-color: #f1f1f1;
+    color: #000;
+}
+.navbar{
+    border-bottom: #ddd solid 1px;
+}
+.text-yellow{
+    color: #faad16;
+}
+input,textarea{
+    border: solid 2px #faad16 !important;
+    background-color: #f1f1f1 !important;
+}
+
+.white {
+    width: 100%;
+    min-height: 3px;
+    border-top: 5px solid #fff;
+  }
+
+  .yellow {
+    width: 100%;
+    min-height: 3px;
+    border-top: 4px solid #faad16;
+  }
+  .carousel-control-next{
+    height: 50% !important;
+    margin-top:auto;
+    margin-bottom:auto;
+  }
+
+  #edit-btn{
+    display:block; 
+    width:30px; 
+    border-radius:0;
+  }
+
+  .customersCont{
+    background-color: #222;
+    height: 200px;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .customers{
+    display:grid;
+    width: 85%;
+    margin: auto;
+    grid-auto-flow: column !important;
+    grid-auto-columns: 18% !important;
+    overflow-x: scroll !important;
+    gap: 25px;
+  }
+
+  @media (max-width:768px){
+    .customersCont{
+      height:150px;
+    }
+    .customers{
+      grid-auto-columns: 31% !important;
+    }
+  }
+
+  .customers::-webkit-scrollbar{
+    display: none;
+  }
+
+  #customer{
+    border: solid 1px #333;
+    border-radius: 4px;
+    height: 100% !important;
+  }
+
+  #delete-btn{
+    background-color: #f1f1f13a; 
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px) !important;
+  }
+
+  .custom-button{
+    border: solid 1px #333 !important;
+    border-radius: 4px !important;
+    background-color: #666 !important;
+    color: #444;
+  }
+
+  .custom-button:hover{
+    opacity: 0.5;
+    transition: 0.2s;
+  }
+
+  
+h1,h2,h3,h4,h5,h6{
+    font-family: cairo-bold !important;
+}
+@font-face {
+    font-family: poppins;
+    src: url(Poppins.ttf);
+}
+@font-face {
+    font-family: cairo;
+    src: url(Cairo-Regular.ttf);
+}
+@font-face {
+    font-family: cairo-bold;
+    src: url(Cairo-ExtraBold.ttf);
+}
+body,.navbar,.container-fluid{
+    direction: rtl ;
+}
+
+.carousel-control-next{
+    height: 50% !important;
+    margin-top:auto;
+    margin-bottom:auto;
+  }
+
+  #editor-container,#editor-container1,#editor-container2{
+    min-height: 150px;
+    direction: ltr !important;
+  }
+  .ql-editor,.ql-snow{
+    direction: ltr !important;
+  }
+
+  .nav-link{
+    font-family: cairo;
+  }
+
+  .sidebar-item{
+    font-family: cairo;
+  }
+
+  .card {
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: #222;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    min-height: 0px !important;
+    height: auto !important;
+    scroll-snap-align: center;
+  }
+
+  .cardsContainer{
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: auto;
+    padding: 0 !important;
+ }
+ 
+ 
+  @media (max-width:768px){
+    .cardsContainer{
+            scroll-snap-type:x mandatory;
+            grid-auto-flow: column !important;
+            grid-auto-columns: 300px !important;
+            overflow-x: scroll !important;
+            grid-template-columns: none;
+            width: 95% !important;
+        }
+    .tog{
+      display: none;
+    }
+  }
+
+  #edit-btn{
+    position:absolute;
+    top:0;
+    right: 0;
+    display:block; 
+    width:30px; 
+    border-radius:4px;
+    background-color: #ffffff22;
+    font-size:16px;
+  }
+
+  #delete-btn{
+    position:absolute;
+    top:0;
+    right: 33.6px !important;
+    display:block; 
+    width:30px; 
+    border-radius:4px;
+    background-color: #ffffff22;
+    font-size:16px;
+  }
+
+  .cardsContainer::-webkit-scrollbar{
+    display: none;
+  }

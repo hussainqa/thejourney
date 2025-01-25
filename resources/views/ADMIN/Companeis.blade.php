@@ -50,10 +50,10 @@
                   <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" id="adlink_{{ $company->id }}" value="http://127.0.0.1:8000/theJourney/{{ $company->type }}/{{ $company->UrlName }}/advert/1" hidden>
+                    <input type="text" id="adlink_{{ $company->id }}" value="https://www.thejourney-iq.com/theJourney/{{ $company->type }}/{{ $company->UrlName }}/advert/1" hidden>
                     <button onclick="copyAdLink({{ $company->id }})" class="btn btn-primary">نسخ الإعلان<i class="fas fa-copy"></i></button>
 
-                    <input type="text" id="link_{{ $company->id }}" value="http://127.0.0.1:8000/theJourney/{{ $company->type }}/{{ $company->UrlName }}" hidden>
+                    <input type="text" id="link_{{ $company->id }}" value="https://www.thejourney-iq.com/theJourney/{{ $company->type }}/{{ $company->UrlName }}" hidden>
                     <button onclick="copyLink({{ $company->id }})" class="btn btn-primary">نسخ الرابط<i class="fas fa-copy"></i></button>
 
                 </div>
@@ -101,7 +101,11 @@
       temp.select();
 
       // Copy the contents of the temporary input element to the clipboard
-      document.execCommand("copy");
+      //document.execCommand("copy");
+
+      var copyText =document.getElementById("link_"+id);
+    navigator.clipboard.writeText(copyText.value);
+
 
       // Remove the temporary input element from the document
       document.body.removeChild(temp);
@@ -126,7 +130,11 @@
       temp.select();
 
       // Copy the contents of the temporary input element to the clipboard
-      document.execCommand("copy");
+      
+      var copyText =document.getElementById("adlink_"+id);
+    navigator.clipboard.writeText(copyText.value);
+
+      //document.execCommand("copy");
 
       // Remove the temporary input element from the document
       document.body.removeChild(temp);

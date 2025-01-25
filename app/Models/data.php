@@ -15,4 +15,10 @@ class data extends Model
     {
         return $this->hasMany(company::class,'companies');
     }
+    public function scopeDateRange($query, $start_date, $end_date, $companyId)
+    {
+        return $query->whereDate('created_at', '>=', $start_date)
+                     ->whereDate('created_at', '<=', $end_date)
+                     ->where('company_id', '=', $companyId);
+    }
 }

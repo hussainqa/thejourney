@@ -15,31 +15,25 @@
     <div class="mb-3">
         <label for="employee name" class="form-label">company name</label>
         <input type="text" name="UrlName" class="form-control is-valid" oninput="validateInput()" id="validationServer01" value="resturant-1" >
-        <div id="employeename" class="form-text">اسم الشركة باللغة الأنكليزية و بدون فواصل</div>
-        <div class="valid-feedback">
+         <div class="valid-feedback float-start d-bloack">
             مثال لأسم المطعم
           </div>
+        <div id="employeename" class="form-text">اسم الشركة باللغة الأنكليزية و بدون فواصل</div>
+       
         <div id="validationMessage" class="form-text invalid-feedback"></div>
 
       </div>
 
 
     <div class="mb-3">
-        <label for="employee name" class="form-label">النوع</label><div class="dropdown card">
-            <button class="form-select text-center dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                الأنواع
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                @foreach ($Types as $type )
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="CompanyType[]" value="{{ $type -> TypeName }}" id="{{ $type -> id }}">
-                    <label class="form-check-label" for="{{ $type -> id }}">
-                        {{ $type -> TypeName }}
-                    </label>
-
-                </div>
-                @endforeach
-            </ul>
+   <select  class="form-select" name="CompanyType[]">
+    
+        @foreach ($Types as $type )
+          <option>{{$type->TypeName}}</option>
+            @endforeach
+    
+       
+      </select>
         </div><div id="employeename" class="form-text">شركة ام مطعم ام فندق</div>
       </div>
       <div class="mb-3">
