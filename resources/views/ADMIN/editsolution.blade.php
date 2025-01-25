@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin1')
 @section('content')
 <div class="container-fluid ps-0" id="left">
 <form action="{{ route('updatesolution', ['service' => $solution->service_key, 'solution' => $solution->sub_key]) }}" method="POST" enctype="multipart/form-data" class="mt-5 p-5 w-100 mb-4 mx-auto bg-light" style=" max-width: 930px; border-radius: 0.375rem; border: solid 1px #ddd;">

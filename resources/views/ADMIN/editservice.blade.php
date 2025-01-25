@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin1')
 @section('content')
 <div class="container-fluid ps-0" id="left">
 <form action="/admin/updateservice/{{$service->id}}" method="POST" enctype="multipart/form-data" class="mt-5 p-5 w-100 mb-4 mx-auto" style="background-color: #222; max-width: 930px; border-radius: 0.375rem;">
